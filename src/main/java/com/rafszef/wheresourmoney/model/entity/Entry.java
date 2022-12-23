@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "entries")
@@ -19,7 +20,7 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private BigDecimal amount;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

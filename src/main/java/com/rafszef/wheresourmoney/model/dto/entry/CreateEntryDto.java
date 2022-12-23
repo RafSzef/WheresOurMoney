@@ -1,12 +1,11 @@
 package com.rafszef.wheresourmoney.model.dto.entry;
 
 import com.rafszef.wheresourmoney.model.dto.category.CategoryDto;
-import com.rafszef.wheresourmoney.model.entity.Category;
 import com.rafszef.wheresourmoney.model.entity.User;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,7 +14,7 @@ import java.sql.Date;
 @AllArgsConstructor
 public class CreateEntryDto {
 
-    private Date timestamp;
+    private LocalDateTime timestamp;
 
     private BigDecimal amount;
 
