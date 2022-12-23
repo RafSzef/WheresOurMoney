@@ -29,6 +29,9 @@ public class User {
 
     private String password;
     @ManyToMany (fetch = FetchType.EAGER)
-    private List<Roles> roles;
+    private List<Role> roles;
+
+    @Column(name = "admin")
+    private boolean isAdmin;
 
 }
