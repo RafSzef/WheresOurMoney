@@ -20,6 +20,6 @@ public class CreateUserDto {
 
     private String password;
 
-    private List<Role> roles;
+    private boolean isAdmin;
 
 }

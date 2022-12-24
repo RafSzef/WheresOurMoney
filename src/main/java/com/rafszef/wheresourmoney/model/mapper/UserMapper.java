@@ -1,5 +1,6 @@
 package com.rafszef.wheresourmoney.model.mapper;
 
+import com.rafszef.wheresourmoney.model.dto.user.CreateUserDto;
 import com.rafszef.wheresourmoney.model.dto.user.UserDto;
 import com.rafszef.wheresourmoney.model.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +22,24 @@ public class UserMapper {
                 .build();
     }
 
-    public User toNewEntity(UserDto userDto) {
+    public User toNewEntity(CreateUserDto createUserDto) {
         return User.builder()
-                .id(userDto.getId())
+                .username(createUserDto.getUsername())
+                .firstName(createUserDto.getFirstName())
+                .lastName(createUserDto.getLastName())
+                .password(createUserDto.getPassword())
+                .isAdmin(createUserDto.isAdmin())
+                .build();
+    }
+
+    public User toEntity(UserDto userDto) {
+        return User.builder()
+                .isAdmin(userDto.isAdmin())
+                .roles(userDto.getRoles())
                 .username(userDto.getUsername())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .password(userDto.getPassword())
-                .roles(userDto.getRoles())
                 .isAdmin(userDto.isAdmin())
                 .build();
     }
