@@ -1,9 +1,13 @@
 package com.rafszef.wheresourmoney.model.entity;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -28,10 +32,8 @@ public class User {
     private String username;
 
     private String password;
+
     @ManyToMany (fetch = FetchType.EAGER)
     private List<Role> roles;
-
-    @Column(name = "admin")
-    private boolean isAdmin;
 
 }

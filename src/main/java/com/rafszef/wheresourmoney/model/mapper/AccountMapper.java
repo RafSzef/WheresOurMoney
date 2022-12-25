@@ -1,7 +1,7 @@
 package com.rafszef.wheresourmoney.model.mapper;
 
 import com.rafszef.wheresourmoney.model.dto.account.AccountDto;
-import com.rafszef.wheresourmoney.model.dto.entry.EntryDto;
+import com.rafszef.wheresourmoney.model.dto.account.CreateAccountDto;
 import com.rafszef.wheresourmoney.model.entity.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,16 @@ public class AccountMapper {
                 .build();
     }
 
-    public Account toNewEntity(AccountDto accountDto) {
+    public AccountDto toNewDto(Account account) {
+        return AccountDto.builder()
+                .name(account.getName())
+                .id(account.getId())
+                .build();
+    }
+
+    public Account toNewEntity(CreateAccountDto createAccountDto) {
         return Account.builder()
-                .id(accountDto.getId())
-                .entries(accountDto.getEntries().stream().map(entryMapper::toNewEntity).collect(Collectors.toList()))
-                .name(accountDto.getName())
+                .name(createAccountDto.getName())
                 .build();
     }
 }

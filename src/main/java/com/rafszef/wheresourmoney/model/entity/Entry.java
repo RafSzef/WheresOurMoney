@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "entries")
@@ -19,12 +20,12 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private BigDecimal amount;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
     private String description;
