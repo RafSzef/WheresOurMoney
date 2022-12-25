@@ -11,7 +11,7 @@ public interface EntryService {
 
     List<EntryDto> getAllEntries();
 
-    EntryDto createAccount(CreateEntryDto createEntryDto);
+    EntryDto createEntry(CreateEntryDto createEntryDto);
 
     EntryDto changeEntry(EntryDto entryDto);
 

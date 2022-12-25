@@ -25,6 +25,7 @@ public class EntryServiceImpl implements EntryService {
     private final EntryRepository entryRepository;
     private final UserRepository userRepository;
     private final EntryMapper entryMapper;
+
     @Override
     public List<EntryDto> getAllEntries() {
         return entryRepository.findAll().stream()
@@ -33,11 +34,11 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public EntryDto createAccount(CreateEntryDto createEntryDto) {
+    public EntryDto createEntry(CreateEntryDto createEntryDto) {
         Entry entry = entryMapper.toNewEntity(createEntryDto);
         entry.setTimestamp(LocalDateTime.now());
         var user = userRepository.findUsersByUsername(createEntryDto.getUser().getUsername());
-        if (user.isPresent()){
+        if (user.isPresent()) {
             entry.setUser(user.get());
         } else throw new EntityNotFoundException("No user found");
 
@@ -48,7 +49,7 @@ public class EntryServiceImpl implements EntryService {
     public EntryDto changeEntry(EntryDto entryDto) {
         var entry = entryRepository.findEntriesById(entryDto);
         if (entry.isPresent()) {
-            entry.map( e -> {
+            entry.map(e -> {
                 e.setUser(entryDto.getUser());
                 e.setTimestamp(entryDto.getTimestamp());
                 e.setAmount(entryDto.getAmount());
