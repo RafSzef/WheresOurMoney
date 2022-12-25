@@ -1,6 +1,5 @@
 package com.rafszef.wheresourmoney.model.mapper;
 
-import com.rafszef.wheresourmoney.model.dto.category.CategoryDto;
 import com.rafszef.wheresourmoney.model.dto.entry.CreateEntryDto;
 import com.rafszef.wheresourmoney.model.dto.entry.EntryDto;
 import com.rafszef.wheresourmoney.model.entity.Entry;
@@ -27,7 +26,7 @@ public class EntryMapper {
     public Entry toNewEntity(CreateEntryDto createEntryDto) {
         return Entry.builder()
                 .amount(createEntryDto.getAmount())
-                .category(categoryMapper.toNewEntity(createEntryDto.getCategory()))
+                .category(categoryMapper.toEntity(createEntryDto.getCategory()))
                 .description(createEntryDto.getDescription())
                 .timestamp(createEntryDto.getTimestamp())
                 .user(createEntryDto.getUser())

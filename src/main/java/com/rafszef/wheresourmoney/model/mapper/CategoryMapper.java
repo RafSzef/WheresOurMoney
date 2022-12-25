@@ -1,6 +1,7 @@
 package com.rafszef.wheresourmoney.model.mapper;
 
 import com.rafszef.wheresourmoney.model.dto.category.CategoryDto;
+import com.rafszef.wheresourmoney.model.dto.category.CreateCategoryDto;
 import com.rafszef.wheresourmoney.model.entity.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,16 @@ public class CategoryMapper {
                 .build();
     }
 
-    public Category toNewEntity(CategoryDto categoryDto) {
+    public Category toEntity(CategoryDto categoryDto) {
         return Category.builder()
                 .id(categoryDto.getId())
                 .categoryTitle(categoryDto.getCategoryTitle())
+                .build();
+    }
+
+    public CategoryDto toNewEntity(CreateCategoryDto createCategoryDto) {
+        return CategoryDto.builder()
+                .categoryTitle(createCategoryDto.getCategoryTitle())
                 .build();
     }
 }

@@ -1,18 +1,16 @@
 package com.rafszef.wheresourmoney.service.category;
 
-import com.rafszef.wheresourmoney.model.dto.account.AccountDto;
-import com.rafszef.wheresourmoney.model.dto.account.CreateAccountDto;
 import com.rafszef.wheresourmoney.model.dto.category.CategoryDto;
 import com.rafszef.wheresourmoney.model.dto.category.CreateCategoryDto;
 
-import java.util.List;
+import java.util.Set;
 
 public interface CategoryService {
 
-    List<AccountDto> getAllCategories();
+    Set<CategoryDto> getAllCategories();
 
     CategoryDto createCategory(CreateCategoryDto createCategoryDto);
 
-    CategoryDto removeCategory(CategoryDto categoryDto);
+    void removeCategory(CategoryDto categoryDto);
 
 }
