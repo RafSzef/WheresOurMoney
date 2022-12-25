@@ -18,7 +18,6 @@ public class UserMapper {
                 .lastName(user.getLastName())
                 .password(user.getPassword())
                 .roles(user.getRoles())
-                .isAdmin(user.isAdmin())
                 .build();
     }
 
@@ -28,19 +27,16 @@ public class UserMapper {
                 .firstName(createUserDto.getFirstName())
                 .lastName(createUserDto.getLastName())
                 .password(createUserDto.getPassword())
-                .isAdmin(createUserDto.isAdmin())
                 .build();
     }
 
     public User toEntity(UserDto userDto) {
         return User.builder()
-                .isAdmin(userDto.isAdmin())
                 .roles(userDto.getRoles())
                 .username(userDto.getUsername())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .password(userDto.getPassword())
-                .isAdmin(userDto.isAdmin())
                 .build();
     }
 }

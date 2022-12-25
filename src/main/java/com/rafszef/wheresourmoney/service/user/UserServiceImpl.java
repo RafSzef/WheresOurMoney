@@ -6,6 +6,9 @@ import com.rafszef.wheresourmoney.model.entity.User;
 import com.rafszef.wheresourmoney.model.mapper.UserMapper;
 import com.rafszef.wheresourmoney.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -52,5 +55,16 @@ public class UserServiceImpl implements UserService {
         if (users.isEmpty()) {
             throw new EntityNotFoundException("User with given username does not exists");
         } else return users;
+    }
+
+    public UserDto getLoggedInUser() {
+        var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userMapper.toDto(user);
+    }
+
+    @Override
+    public UserDto loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userMapper.toDto(userRepository.findUsersByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found")));
     }
 }

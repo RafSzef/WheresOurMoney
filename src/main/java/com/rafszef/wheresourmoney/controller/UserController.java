@@ -34,4 +34,14 @@ public class UserController {
     public UserDto changePassword(@RequestBody UserDto userDto) {
         return userService.changePassword(userDto);
     }
+
+
+    @PostMapping("/login")
+    public void login() {
+    }
+
+    @GetMapping("/current")
+    public UserDto getLoggedInUser() {
+        return userService.getLoggedInUser();
+    }
 }
