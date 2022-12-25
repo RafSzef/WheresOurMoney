@@ -28,7 +28,6 @@ public class EntryMapper {
                 .amount(createEntryDto.getAmount())
                 .category(categoryMapper.toEntity(createEntryDto.getCategory()))
                 .description(createEntryDto.getDescription())
-                .timestamp(createEntryDto.getTimestamp())
                 .user(createEntryDto.getUser())
                 .build();
     }

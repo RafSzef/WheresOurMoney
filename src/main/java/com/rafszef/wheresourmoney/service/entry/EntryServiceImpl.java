@@ -4,6 +4,7 @@ import com.rafszef.wheresourmoney.model.dto.entry.CreateEntryDto;
 import com.rafszef.wheresourmoney.model.dto.entry.EntryDto;
 import com.rafszef.wheresourmoney.model.dto.user.UserDto;
 import com.rafszef.wheresourmoney.model.entity.Entry;
+import com.rafszef.wheresourmoney.model.entity.User;
 import com.rafszef.wheresourmoney.model.mapper.EntryMapper;
 import com.rafszef.wheresourmoney.repository.EntryRepository;
 import com.rafszef.wheresourmoney.repository.UserRepository;
@@ -47,7 +48,7 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public EntryDto changeEntry(EntryDto entryDto) {
-        var entry = entryRepository.findEntriesById(entryDto);
+        var entry = entryRepository.findEntriesById(entryDto.getId());
         if (entry.isPresent()) {
             entry.map(e -> {
                 e.setUser(entryDto.getUser());
@@ -65,12 +66,16 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public void removeEntry(EntryDto entryDto) {
-        entryRepository.deleteById(entryDto.getId());
+        var entry = entryRepository.findEntriesById(entryDto.getId());
+        if (entry.isPresent()) {
+            entryRepository.deleteById(entry.get().getId());
+        }else throw new EntityNotFoundException("No entry found");
+        
     }
 
     @Override
-    public List<EntryDto> findEntriesByUser(UserDto userDto) {
-        return entryRepository.findEntriesByUser(userDto).stream()
+    public List<EntryDto> findEntriesByUser(String username) {
+        return entryRepository.findEntriesByUser_Username(username).stream()
                 .map(entryMapper::toDto)
                 .collect(Collectors.toList());
     }

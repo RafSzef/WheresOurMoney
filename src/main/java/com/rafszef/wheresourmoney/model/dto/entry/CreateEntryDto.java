@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CreateEntryDto {
 
-    private LocalDateTime timestamp;
-
     private BigDecimal amount;
 
     private User user;

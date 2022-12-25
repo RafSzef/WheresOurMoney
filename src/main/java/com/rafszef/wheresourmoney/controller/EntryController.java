@@ -23,8 +23,8 @@ public class EntryController {
     }
 
     @GetMapping("/findByUser")
-    public List<EntryDto> findEntriesByUser(@RequestBody UserDto userDto) {
-        return entryService.findEntriesByUser(userDto);
+    public List<EntryDto> findEntriesByUser(@RequestParam String username) {
+        return entryService.findEntriesByUser(username);
     }
 
     @GetMapping("/findAllIncomes")
@@ -37,7 +37,7 @@ public class EntryController {
         return entryService.findAllOutcomes();
     }
 
-    @GetMapping("/find")
+    @GetMapping("/findInRannge")
     public List<EntryDto> findEntriesInRange(@RequestParam BigDecimal min, @RequestParam BigDecimal max) {
         return entryService.findEntriesWithAmountBetween(min, max);
     }
@@ -57,12 +57,12 @@ public class EntryController {
     }
 
     @PostMapping("/update")
-    public EntryDto updateEntry(@RequestParam EntryDto entryDto) {
+    public EntryDto updateEntry(@RequestBody EntryDto entryDto) {
         return entryService.changeEntry(entryDto);
     }
 
     @DeleteMapping("/remove")
-    public void deleteEntry(EntryDto entryDto) {
+    public void deleteEntry(@RequestBody EntryDto entryDto) {
         entryService.removeEntry(entryDto);
     }
 

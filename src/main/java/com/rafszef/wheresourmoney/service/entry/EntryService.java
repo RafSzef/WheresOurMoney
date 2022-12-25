@@ -17,7 +17,7 @@ public interface EntryService {
 
     void removeEntry(EntryDto entryDto);
 
-    List<EntryDto> findEntriesByUser(UserDto userDto);
+    List<EntryDto> findEntriesByUser(String username);
 
     List<EntryDto> findAllIncomes();
 
