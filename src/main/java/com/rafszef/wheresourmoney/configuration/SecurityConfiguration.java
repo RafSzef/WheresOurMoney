@@ -22,18 +22,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/login")
-                .permitAll()
-                .antMatchers("/category/**", "/account/**")
-                .hasAuthority("ADMIN")
-                .antMatchers("/entry/create", "/entry/update", "/entry/remove")
-                .hasAnyAuthority("EDIT", "ADMIN")
-                .antMatchers("/**").permitAll()
-                .anyRequest().permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().disable();
+                .anyRequest().permitAll();
+//                .antMatchers("/user/login")
+//                .permitAll()
+//                .antMatchers("/category/**", "/account/**")
+//                .hasAuthority("ADMIN")
+//                .antMatchers("/entry/create", "/entry/update", "/entry/remove")
+//                .hasAnyAuthority("EDIT", "ADMIN")
+////                .anyRequest().authenticated()
+//                .anyRequest().permitAll()
+//                .and()
+//                .httpBasic()
+//                .and()
+//                .csrf().disable();
     }
 
     @Override

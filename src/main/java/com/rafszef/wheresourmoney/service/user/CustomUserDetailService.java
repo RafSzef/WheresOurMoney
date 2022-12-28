@@ -20,7 +20,7 @@ public class CustomUserDetailService implements UserDetailsService {
         var user = userRepository.findUsersByUsername(username);
         if (user.isPresent()) {
             return new CustomUserDetails(user.get());
-        } else throw new UsernameNotFoundException("User not Found");
+        } else throw new UsernameNotFoundException("User not Found " + username);
 
     }
 }

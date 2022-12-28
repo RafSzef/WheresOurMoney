@@ -22,16 +22,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
+    private String username;
+
+    private String password;
+
+    private String email;
+
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(unique = true)
-    private String username;
-
-    private String password;
 
     @ManyToMany (fetch = FetchType.EAGER)
     private List<Role> roles;
