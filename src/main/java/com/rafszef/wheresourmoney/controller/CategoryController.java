@@ -10,6 +10,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 @RequiredArgsConstructor
 public class CategoryController {
 
