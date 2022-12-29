@@ -29,6 +29,8 @@ nav {
 
 .nav--logo_text{
   margin-left: 0;
+  margin-top: auto;
+  font-size: x-large;
 }
 .nav--login_button {
   margin-left: 20px;

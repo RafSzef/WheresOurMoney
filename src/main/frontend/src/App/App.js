@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import EntryTable from "../compontents/EntryTable";
 import UsersTable from "../compontents/UsersTable";
 import CategoryTable from "../compontents/CategoryTable";
+import Footer from "../compontents/Footer";
 
 function App() {
     return (
@@ -22,10 +23,7 @@ function App() {
                         <EntryTable/>
                     </Route>
                 </Switch>
-                {/*<EntryTable></EntryTable>*/}
-                {/*<UsersTable></UsersTable>*/}
-                {/*<CategoryTable></CategoryTable>*/}
-
+                <Footer />
             </div>
         </Router>
     );
