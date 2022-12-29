@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/entry")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
-
+@CrossOrigin
 public class EntryController {
 
     private final EntryService entryService;

@@ -27,22 +27,24 @@ function UsersTable({params}) {
             firstName: row.firstName,
             lastName: row.lastName,
             username: row.username,
+            email: row.email,
             roles: row.roles.map((i) => i.name),
         };
     })
 
     const columns = [
         {field: 'id', headerName: 'ID'},
-        {field: 'firstName', headerName: 'First Name'},
-        {field: 'lastName', headerName: 'Last Name'},
-        {field: 'username', headerName: 'Username'},
-        {field: 'roles', headerName: 'Roles'},
+        {field: 'firstName', headerName: 'First Name', width: 150},
+        {field: 'lastName', headerName: 'Last Name', width: 150},
+        {field: 'username', headerName: 'Username', width: 150},
+        {field: 'email', headerName: 'Email Address', width: 300},
+        {field: 'roles', headerName: 'Roles', width: 300},
     ];
 
 
     return (
-        <div style={{height: 400, width: '100%'}}>
-            <DataGrid
+        <div style={{height: 400, width: '100%', color: "white"}}>
+            <DataGrid style={{color: "white", backgroundColor: "#373947" }}
                 rows={detailsRows}
                 columns={columns}
                 pageSize={5}

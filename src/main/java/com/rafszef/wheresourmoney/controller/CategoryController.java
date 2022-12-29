@@ -16,16 +16,19 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/all")
     public Set<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
-    @PostMapping("/create")
+    @CrossOrigin(origins = "http://localhost:3000/")
+    @PostMapping("/add")
     public CategoryDto createCategory(@RequestBody CreateCategoryDto createCategoryDto) {
         return categoryService.createCategory(createCategoryDto);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @DeleteMapping("/delete")
     public void deleteCategory (@RequestBody CategoryDto categoryDto) {
         categoryService.removeCategory(categoryDto);

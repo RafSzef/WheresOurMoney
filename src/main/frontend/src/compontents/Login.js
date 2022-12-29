@@ -23,10 +23,9 @@ const Login = () => {
     useEffect(() => {
         setErrMsg('');
     }, [user, pwd])
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post(LOGIN_URL,
                 JSON.stringify({user, pwd}),

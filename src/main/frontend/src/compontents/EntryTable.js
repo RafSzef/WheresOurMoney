@@ -32,18 +32,18 @@ function EntryTable({params}) {
     })
 
     const columns = [
-        {field: 'id', headerName: 'ID'},
-        {field: 'timestamp', headerName: 'Date'},
-        {field: 'amount', headerName: 'Amount'},
-        {field: 'user', headerName: 'Username'},
-        {field: 'category', headerName: 'Category'},
-        {field: 'description', headerName: 'Description'},
+        {field: 'id', headerName: 'ID', width: 70},
+        {field: 'timestamp', headerName: 'Date', width: 150},
+        {field: 'amount', headerName: 'Amount', width: 150},
+        {field: 'user', headerName: 'Username', width: 150},
+        {field: 'category', headerName: 'Category',width: 150},
+        {field: 'description', headerName: 'Description',width: 300},
     ];
 
 
     return (
         <div style={{height: 400, width: '100%'}}>
-            <DataGrid
+            <DataGrid style={{color: "white", backgroundColor: "#282c34" }}
                 rows={detailsRows}
                 columns={columns}
                 pageSize={5}
