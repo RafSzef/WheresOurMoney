@@ -1,14 +1,14 @@
 import './App.css';
 import Navbar from "../compontents/Navbar";
 
-import CollapsibleTable from "../compontents/CollapsibleTable";
+import EntryTable from "../compontents/EntryTable";
 
 function App() {
     return (
         <div className="App">
             <Navbar></Navbar>
+            <EntryTable></EntryTable>
             <header className="App-header">
-                <CollapsibleTable></CollapsibleTable>
             </header>
         </div>
     );

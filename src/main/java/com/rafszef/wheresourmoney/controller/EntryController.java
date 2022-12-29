@@ -19,7 +19,6 @@ public class EntryController {
 
     private final EntryService entryService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public List<EntryDto> getAllEntries() {
         return entryService.getAllEntries();
