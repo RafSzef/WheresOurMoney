@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import axios from "axios";
-import { Grid, TextField, Button } from "@material-ui/core";
+import {Button, Grid, TextField} from "@material-ui/core";
 import {DataGrid} from "@mui/x-data-grid";
 import SendIcon from '@mui/icons-material/Send';
 
@@ -16,13 +16,42 @@ function CategoryTable({params}) {
         console.log(postData)
     }
 
+    const renderDeleteButton =  (params) => {
+        return (
+            <strong>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    style={{ marginLeft: 16 }}
+                onClick={() => {
+                    alert(params.row.id)
 
+                    }}
+                >
+                    Delete category
+                </Button>
+            </strong>
+        )
+    }
+
+
+    async function removeData(categoryId) {
+        axios
+            .delete("http://localhost:8080/category/delete/", categoryId )
+            .then((response) => {
+                const json = response.data;
+                console.log(json)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
     useEffect(() => {
         async function getData() {
             axios.get("http://localhost:8080/category/all/")
                 .then((response) => {
                     console.log(response.data);
-
                     setTableData(response.data);
                     setLoadingData(true);
                 })
@@ -56,6 +85,7 @@ function CategoryTable({params}) {
     const columns = [
         {field: 'id', headerName: 'ID'},
         {field: 'categoryTitle', headerName: 'Category Name', width: 200},
+        {field: 'remove', headerName: 'Remove category', renderCell: renderDeleteButton, width: 200}
     ];
 
 
@@ -64,17 +94,17 @@ function CategoryTable({params}) {
         <div>
             {/*<div style={{backgroundColor: "dimgray", alignItems: "center", display: "table", position: "sticky", width: "100%"}}>*/}
             <Grid container style={{position: "sticky", width: "100%", backgroundColor: "#282c34"}}>
-                <Grid item alignItems="stretch" style={{ display: "flex", marginLeft: "20px"}}>
-                    <TextField style={{backgroundColor: "#e0e0e0",color:"revert", margin: "15px 10px 15px 10px"}}
-                        id="standard-basic-normal"
-                        size="normal"
-                        margin="normal"
-                        label="Insert category name"
+                <Grid item alignItems="stretch" style={{display: "flex", marginLeft: "20px"}}>
+                    <TextField style={{backgroundColor: "#e0e0e0", color: "revert", margin: "15px 10px 15px 10px"}}
+                               id="standard-basic-normal"
+                               size="normal"
+                               margin="normal"
+                               label="Insert category name"
                         // value={buttonValue}
-                        variant="filled"
-                        onChange={handleChange}/>
-                </Grid >
-                <Grid item alignItems="stretch" style={{ display: "flex", margin: "15px 10px 15px 10px" }}>
+                               variant="filled"
+                               onChange={handleChange}/>
+                </Grid>
+                <Grid item alignItems="stretch" style={{display: "flex", margin: "15px 10px 15px 10px"}}>
                     <Button
                         variant="contained"
                         size="large"
@@ -82,9 +112,11 @@ function CategoryTable({params}) {
                         endIcon={<SendIcon/>}
                         onClick={() => {
                             setData();
+
                             function refreshPage() {
                                 window.location.reload();
                             }
+
                             refreshPage()
                         }}>
                         Add category
