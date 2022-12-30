@@ -14,6 +14,7 @@ public class CategoryMapper {
         return CategoryDto.builder()
                 .id(category.getId())
                 .categoryTitle(category.getCategoryTitle())
+                .isActive(category.isActive())
                 .build();
     }
 
@@ -21,12 +22,14 @@ public class CategoryMapper {
         return Category.builder()
                 .id(categoryDto.getId())
                 .categoryTitle(categoryDto.getCategoryTitle())
+                .isActive(categoryDto.isActive())
                 .build();
     }
 
     public CategoryDto toNewEntity(CreateCategoryDto createCategoryDto) {
         return CategoryDto.builder()
                 .categoryTitle(createCategoryDto.getCategoryTitle())
+                .isActive(createCategoryDto.isActive())
                 .build();
     }
 }

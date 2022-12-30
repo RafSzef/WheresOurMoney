@@ -10,4 +10,5 @@ import lombok.*;
 public class CreateCategoryDto {
 
     private String categoryTitle;
+    private boolean isActive;
 }

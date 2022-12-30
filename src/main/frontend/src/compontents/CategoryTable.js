@@ -25,8 +25,8 @@ function CategoryTable({params}) {
                     size="small"
                     style={{ marginLeft: 16 }}
                 onClick={() => {
-                    alert(params.row.id)
-
+                    // alert(params.row.id)
+                    removeData(params.row.id, params.row.categoryTitle)
                     }}
                 >
                     Delete category
@@ -35,18 +35,25 @@ function CategoryTable({params}) {
         )
     }
 
-
-    async function removeData(categoryId) {
-        axios
-            .delete("http://localhost:8080/category/delete/", categoryId )
-            .then((response) => {
-                const json = response.data;
-                console.log(json)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    //TODO change to inactive instead of deleting
+    async function removeData(categoryId,categoryTitle) {
+        let categoryObject = {
+            id: categoryId,
+            categoryTitle: categoryTitle
+        }
+        console.log(categoryObject.id)
+        console.log(categoryObject.categoryTitle)
+        // axios
+        //     .delete("http://localhost:8080/category/delete/",{data: categoryObject})
+        //     .then((response) => {
+        //         const json = response.data;
+        //         console.log(json)
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
     }
+
     useEffect(() => {
         async function getData() {
             axios.get("http://localhost:8080/category/all/")
@@ -83,28 +90,27 @@ function CategoryTable({params}) {
     }
 
     const columns = [
-        {field: 'id', headerName: 'ID'},
-        {field: 'categoryTitle', headerName: 'Category Name', width: 200},
+        {field: 'id', headerName: 'ID', sort: true},
+        {field: 'categoryTitle', headerName: 'Category name', width: 200},
+        {field: 'active', headerName: 'Is active ?', width: 200},
         {field: 'remove', headerName: 'Remove category', renderCell: renderDeleteButton, width: 200}
     ];
 
 
-    //TODO clean up unused params; change navigation buttons color
     return (
         <div>
             {/*<div style={{backgroundColor: "dimgray", alignItems: "center", display: "table", position: "sticky", width: "100%"}}>*/}
             <Grid container style={{position: "sticky", width: "100%", backgroundColor: "#282c34"}}>
-                <Grid item alignItems="stretch" style={{display: "flex", marginLeft: "20px"}}>
+                <Grid item  style={{display: "flex", marginLeft: "20px"}}>
                     <TextField style={{backgroundColor: "#e0e0e0", color: "revert", margin: "15px 10px 15px 10px"}}
                                id="standard-basic-normal"
-                               size="normal"
                                margin="normal"
                                label="Insert category name"
                         // value={buttonValue}
                                variant="filled"
                                onChange={handleChange}/>
                 </Grid>
-                <Grid item alignItems="stretch" style={{display: "flex", margin: "15px 10px 15px 10px"}}>
+                <Grid item style={{display: "flex", margin: "15px 10px 15px 10px"}}>
                     <Button
                         variant="contained"
                         size="large"

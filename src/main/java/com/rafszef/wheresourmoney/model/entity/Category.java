@@ -1,6 +1,7 @@
 package com.rafszef.wheresourmoney.model.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -19,4 +20,8 @@ public class Category {
 
     @Column (name = "category_title", unique = true)
     private String categoryTitle;
+
+    @Column (name = "active")
+    @Type(type = "numeric_boolean")
+    private boolean isActive;
 }

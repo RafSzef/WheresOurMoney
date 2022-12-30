@@ -6,6 +6,7 @@ import com.rafszef.wheresourmoney.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -16,21 +17,38 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @CrossOrigin(origins = "http://localhost:3000/")
+
     @GetMapping("/all")
-    public Set<CategoryDto> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000/")
+    @GetMapping("/allInactive")
+    public Set<CategoryDto> getAllInactiveCategories() {
+        return categoryService.getAllInactiveCategories();
+    }
+
+    @GetMapping("/allActive")
+    public Set<CategoryDto> getAllActiveCategories() {
+        return categoryService.getAllActiveCategories();
+    }
+    @PutMapping("/changeActive")
+    public CategoryDto changeActive(@RequestParam Long categoryId) {
+        return categoryService.changeIsActive(categoryId);
+    }
+
+    @PutMapping("/updateName")
+    public CategoryDto changeName(@RequestBody CategoryDto categoryDto) {
+        return categoryService.updateCategory(categoryDto);
+    }
+
     @PostMapping("/add")
     public CategoryDto createCategory(@RequestBody CreateCategoryDto createCategoryDto) {
         return categoryService.createCategory(createCategoryDto);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000/")
     @DeleteMapping("/delete")
-    public void deleteCategory (@RequestBody CategoryDto categoryDto) {
+    public void deleteCategory(@RequestBody CategoryDto categoryDto) {
         categoryService.removeCategory(categoryDto);
     }
 }

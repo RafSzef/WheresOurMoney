@@ -10,6 +10,9 @@ import lombok.*;
 public class CategoryDto {
 
     private Long id;
-
     private String categoryTitle;
+    private boolean isActive;
+    public void changeActive() {
+        isActive = !isActive;
+    }
 }
