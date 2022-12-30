@@ -4,6 +4,7 @@ import axios from "axios";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {DataGrid} from "@mui/x-data-grid";
 import SendIcon from '@mui/icons-material/Send';
+import MyChangeStatusDialog from "./MyChangeStatusDialog";
 
 function CategoryTable({params}) {
     const [tableData, setTableData] = useState([])
@@ -30,6 +31,24 @@ function CategoryTable({params}) {
                     }}
                 >
                     Delete category
+                </Button>
+            </strong>
+        )
+    }
+    const renderChangeActivityButton =  (params) => {
+        return (
+            <strong>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    // style={{ marginLeft: 16 }}
+                    onClick={() => {
+                        // alert(params.row.id)
+                        MyChangeStatusDialog(params.row.id)
+                    }}
+                >
+                    activate/deactivate
                 </Button>
             </strong>
         )
@@ -93,6 +112,8 @@ function CategoryTable({params}) {
         {field: 'id', headerName: 'ID', sort: true},
         {field: 'categoryTitle', headerName: 'Category name', width: 200},
         {field: 'active', headerName: 'Is active ?', width: 200},
+        {field: 'changeActive', headerName: 'Activate/Deactivate', renderCell: () => {return <MyChangeStatusDialog />;
+            }, width: 300},
         {field: 'remove', headerName: 'Remove category', renderCell: renderDeleteButton, width: 200}
     ];
 
